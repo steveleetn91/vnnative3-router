@@ -1,0 +1,25 @@
+{
+  "name": "vnnative3-router",
+  "version": "1.0.0",
+  "description": "Vn Native Framework package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steveleetn91/vnnative3-router.git"
+  },
+  "keywords": [
+    "Vn",
+    "Native",
+    "Framework",
+    "package"
+  ],
+  "author": "Steve Lee 91",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/steveleetn91/vnnative3-router/issues"
+  },
+  "homepage": "https://github.com/steveleetn91/vnnative3-router#readme"
+}
