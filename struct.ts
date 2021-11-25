@@ -1,5 +1,5 @@
-import VnNative3Console from "../vnnative3-console/console";
-import HTML404 from "../vnnative3-webview/HTML404";
+import VnNative3Console from "vnnative3-console/console";
+import HTML404 from "vnnative3-webview/HTML404";
 import VnNative3RouterInterFace from "./interface";
 export default class VnNative3RouterStruct implements VnNative3RouterInterFace{
     config: Array<any>
