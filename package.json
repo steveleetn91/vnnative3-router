@@ -1,9 +1,12 @@
 {
   "name": "vnnative3-router",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Vn Native Framework package",
   "main": "index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "prepublish": "npm run build",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,5 +24,12 @@
   "bugs": {
     "url": "https://github.com/steveleetn91/vnnative3-router/issues"
   },
-  "homepage": "https://github.com/steveleetn91/vnnative3-router#readme"
+  "homepage": "https://github.com/steveleetn91/vnnative3-router#readme",
+  "devDependencies": {
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "vnnative3-console": "^1.0.1",
+    "vnnative3-webview": "^1.0.3"
+  }
 }
