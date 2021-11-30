@@ -61,8 +61,8 @@ var VnNative3RouterStruct = /** @class */ (function () {
                             scriptPage.setAttribute('src', "/assets/".concat(this.config[i].name, ".bundle.js"));
                             document.body.appendChild(scriptPage);
                             stylePage = document.createElement("link");
-                            stylePage.setAttribute('href', "/assets/".concat(this.config[i].name, ".bundle.css"));
                             stylePage.setAttribute('rel', 'stylesheet');
+                            stylePage.setAttribute('href', "/assets/".concat(this.config[i].name, ".bundle.css"));
                             document.head.appendChild(stylePage);
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
                             (new console_1.default).log("Starting  ".concat(this.config[i].name));
