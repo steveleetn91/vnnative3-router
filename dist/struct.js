@@ -36,8 +36,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var console_1 = require("vnnative3-console/console");
-var HTML404_1 = require("vnnative3-webview/HTML404");
+var console_1 = require("vnnative3-console/dist/console");
+var HTML404_1 = require("vnnative3-webview/dist/HTML404");
 var VnNative3RouterStruct = /** @class */ (function () {
     function VnNative3RouterStruct() {
     }
@@ -51,17 +51,21 @@ var VnNative3RouterStruct = /** @class */ (function () {
     };
     VnNative3RouterStruct.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var root, i, scriptPage;
+            var root, i, scriptPage, stylePage;
             return __generator(this, function (_a) {
                 root = document.getElementById("root");
                 try {
                     for (i = 0; i < this.config.length; i++) {
                         if (window.location.pathname === this.config[i].url) {
                             scriptPage = document.createElement("script");
-                            scriptPage.setAttribute('src', "/assets/".concat(this.config[i].name));
+                            scriptPage.setAttribute('src', "/assets/".concat(this.config[i].name, ".bundle.js"));
                             document.body.appendChild(scriptPage);
+                            stylePage = document.createElement("link");
+                            stylePage.setAttribute('href', "/assets/".concat(this.config[i].name, ".bundle.css"));
+                            stylePage.setAttribute('rel', 'stylesheet');
+                            document.head.appendChild(stylePage);
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
-                            (new console_1.default).log("Starting  ".concat(scriptPage));
+                            (new console_1.default).log("Starting  ".concat(this.config[i].name));
                             return [2 /*return*/];
                         }
                         if ((i + 1) === this.config.length) {

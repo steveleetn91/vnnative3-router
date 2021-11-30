@@ -1,12 +1,13 @@
 {
   "name": "vnnative3-router",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "Vn Native Framework package",
   "main": "index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "prepublish": "npm run build",
     "build": "tsc",
+    "public":"npm publish --access public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
