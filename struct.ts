@@ -16,12 +16,11 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
         try {
             for (let i = 0; i < this.config.length; i++) {
                 if (window.location.pathname === this.config[i].url) {
-                    window[this.config[i].name] = (new this.config[i].page);
-                    let page = (new this.config[i].page);
-                    await page.beforeRender();
-                    root.innerHTML = page.render();
-                    await page.afterRender();
+                    let scriptPage = document.createElement("script");
+                    scriptPage.setAttribute('src',`/assets/${this.config[i].name}`);
+                    document.body.appendChild(scriptPage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
+                    (new VnNative3Console).log(`Starting  ${scriptPage}`);
                     return;
                 }
                 if ((i + 1) === this.config.length) {
@@ -35,8 +34,10 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
         }
     }
     async renderCurrentPage(name: any, page: any) {
+        let root: any;
+        root = document.getElementById("root");
         await page.beforeRender();
-        await page.render();
+        root.innerHTML = await page.render();
         await page.afterRender();
         window[name] = page;
     }

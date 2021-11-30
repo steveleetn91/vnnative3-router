@@ -51,62 +51,50 @@ var VnNative3RouterStruct = /** @class */ (function () {
     };
     VnNative3RouterStruct.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var root, i, page, e_1;
+            var root, i, scriptPage;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        root = document.getElementById("root");
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 8, , 9]);
-                        i = 0;
-                        _a.label = 2;
-                    case 2:
-                        if (!(i < this.config.length)) return [3 /*break*/, 7];
-                        if (!(window.location.pathname === this.config[i].url)) return [3 /*break*/, 5];
-                        window[this.config[i].name] = (new this.config[i].page);
-                        page = (new this.config[i].page);
-                        return [4 /*yield*/, page.beforeRender()];
-                    case 3:
-                        _a.sent();
-                        root.innerHTML = page.render();
-                        return [4 /*yield*/, page.afterRender()];
-                    case 4:
-                        _a.sent();
-                        (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
-                        return [2 /*return*/];
-                    case 5:
+                root = document.getElementById("root");
+                try {
+                    for (i = 0; i < this.config.length; i++) {
+                        if (window.location.pathname === this.config[i].url) {
+                            scriptPage = document.createElement("script");
+                            scriptPage.setAttribute('src', "/assets/".concat(this.config[i].name));
+                            document.body.appendChild(scriptPage);
+                            (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
+                            (new console_1.default).log("Starting  ".concat(scriptPage));
+                            return [2 /*return*/];
+                        }
                         if ((i + 1) === this.config.length) {
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
                             root.innerHTML = (new HTML404_1.default).render();
                             return [2 /*return*/];
                         }
-                        _a.label = 6;
-                    case 6:
-                        i++;
-                        return [3 /*break*/, 2];
-                    case 7: return [3 /*break*/, 9];
-                    case 8:
-                        e_1 = _a.sent();
-                        return [2 /*return*/, (new console_1.default).error(e_1.toString())];
-                    case 9: return [2 /*return*/];
+                    }
                 }
+                catch (e) {
+                    return [2 /*return*/, (new console_1.default).error(e.toString())];
+                }
+                return [2 /*return*/];
             });
         });
     };
     VnNative3RouterStruct.prototype.renderCurrentPage = function (name, page) {
         return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, page.beforeRender()];
+            var root, _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        root = document.getElementById("root");
+                        return [4 /*yield*/, page.beforeRender()];
                     case 1:
-                        _a.sent();
+                        _b.sent();
+                        _a = root;
                         return [4 /*yield*/, page.render()];
                     case 2:
-                        _a.sent();
+                        _a.innerHTML = _b.sent();
                         return [4 /*yield*/, page.afterRender()];
                     case 3:
-                        _a.sent();
+                        _b.sent();
                         window[name] = page;
                         return [2 /*return*/];
                 }
