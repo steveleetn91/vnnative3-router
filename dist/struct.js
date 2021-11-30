@@ -94,6 +94,25 @@ var VnNative3RouterStruct = /** @class */ (function () {
             });
         });
     };
+    VnNative3RouterStruct.prototype.renderCurrentPage = function (name, page) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, page.beforeRender()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, page.render()];
+                    case 2:
+                        _a.sent();
+                        return [4 /*yield*/, page.afterRender()];
+                    case 3:
+                        _a.sent();
+                        window[name] = page;
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     return VnNative3RouterStruct;
 }());
 exports.default = VnNative3RouterStruct;
