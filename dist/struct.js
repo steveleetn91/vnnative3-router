@@ -96,7 +96,9 @@ var VnNative3RouterStruct = /** @class */ (function () {
                         }
                         if ((i + 1) === this.config.length) {
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
-                            root.innerHTML = (new HTML404_1.default).render();
+                            if (root) {
+                                root.innerHTML = (new HTML404_1.default).render();
+                            }
                             return [2 /*return*/];
                         }
                     }
@@ -118,12 +120,14 @@ var VnNative3RouterStruct = /** @class */ (function () {
                         return [4 /*yield*/, page.beforeRender()];
                     case 1:
                         _b.sent();
+                        if (!root) return [3 /*break*/, 3];
                         _a = root;
                         return [4 /*yield*/, page.render()];
                     case 2:
                         _a.innerHTML = _b.sent();
-                        return [4 /*yield*/, page.afterRender()];
-                    case 3:
+                        _b.label = 3;
+                    case 3: return [4 /*yield*/, page.afterRender()];
+                    case 4:
                         _b.sent();
                         window[name] = page;
                         return [2 /*return*/];

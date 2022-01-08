@@ -11,7 +11,7 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
         }
     }
     async init() {
-        let root: any;
+        let root: HTMLElement | null;
         root = document.getElementById("root");
         const urlParams = new URLSearchParams(window.location.search);
         const vn3page = urlParams.get('vn3page');
@@ -53,7 +53,9 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                 }
                 if ((i + 1) === this.config.length) {
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
-                    root.innerHTML = (new VnNative3HTML404).render();
+                    if(root) {
+                        root.innerHTML = (new VnNative3HTML404).render();
+                    }
                     return;
                 }
             }
@@ -62,10 +64,12 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
         }
     }
     async renderCurrentPage(name: any, page: any) {
-        let root: any;
+        let root: HTMLElement | null;
         root = document.getElementById("root");
         await page.beforeRender();
-        root.innerHTML = await page.render();
+        if(root){
+            root.innerHTML = await page.render();
+        }
         await page.afterRender();
         window[name] = page;
     }
