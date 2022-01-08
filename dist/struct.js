@@ -58,7 +58,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
                 vn3page = urlParams.get('vn3page');
                 try {
                     for (i = 0; i < this.config.length; i++) {
-                        if (vn3page && vn3page === this.config[i].url) {
+                        if (vn3page && vn3page === this.config[i].url && window.location.pathname.includes("/android_asset")) {
                             scriptPage = document.createElement("script");
                             scriptPage.setAttribute('src', "/android_asset/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
                             document.body.appendChild(scriptPage);

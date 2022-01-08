@@ -17,7 +17,7 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
         const vn3page = urlParams.get('vn3page');
         try {
             for (let i = 0; i < this.config.length; i++) {
-                if (vn3page && vn3page === this.config[i].url) {
+                if (vn3page && vn3page === this.config[i].url && window.location.pathname.includes("/android_asset")) {
                     let scriptPage = document.createElement("script");
                     scriptPage.setAttribute('src',`/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.js`);
                     document.body.appendChild(scriptPage);
