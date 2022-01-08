@@ -51,7 +51,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
     };
     VnNative3RouterStruct.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var root, i, scriptPage, stylePage;
+            var root, i, scriptPage, stylePage, scriptPage, assetsUrl, stylePage;
             return __generator(this, function (_a) {
                 root = document.getElementById("root");
                 try {
@@ -63,6 +63,19 @@ var VnNative3RouterStruct = /** @class */ (function () {
                             stylePage = document.createElement("link");
                             stylePage.setAttribute('rel', 'stylesheet');
                             stylePage.setAttribute('href', "/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
+                            document.head.appendChild(stylePage);
+                            (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
+                            (new console_1.default).log("Starting  ".concat(this.config[i].name));
+                            return [2 /*return*/];
+                        }
+                        else if (window.location.pathname === ('/android_assets' + this.config[i].url)) {
+                            scriptPage = document.createElement("script");
+                            assetsUrl = '/android_assets';
+                            scriptPage.setAttribute('src', "/android_assets/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
+                            document.body.appendChild(scriptPage);
+                            stylePage = document.createElement("link");
+                            stylePage.setAttribute('rel', 'stylesheet');
+                            stylePage.setAttribute('href', "/android_assets/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
                             document.head.appendChild(stylePage);
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
                             (new console_1.default).log("Starting  ".concat(this.config[i].name));
