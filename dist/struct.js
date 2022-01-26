@@ -51,14 +51,17 @@ var VnNative3RouterStruct = /** @class */ (function () {
     };
     VnNative3RouterStruct.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var root, urlParams, vn3page, i, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage;
+            var root, urlParams, vn3page, os, assets, i, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage;
             return __generator(this, function (_a) {
                 root = document.getElementById("root");
                 urlParams = new URLSearchParams(window.location.search);
                 vn3page = urlParams.get('vn3page');
                 try {
+                    os = void 0;
+                    os = document.getElementById("os");
+                    assets = (os === null || os === void 0 ? void 0 : os.getAttribute("content")) === "iOS" ? "" : "/assets";
                     for (i = 0; i < this.config.length; i++) {
-                        if (vn3page && vn3page === this.config[i].url && window.location.pathname.includes("/android_asset")) {
+                        if (vn3page && vn3page === this.config[i].url && (os === null || os === void 0 ? void 0 : os.getAttribute("content")) === "android") {
                             scriptPage = document.createElement("script");
                             scriptPage.setAttribute('src', "/android_asset/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
                             document.body.appendChild(scriptPage);
@@ -70,13 +73,25 @@ var VnNative3RouterStruct = /** @class */ (function () {
                             (new console_1.default).log("Starting  ".concat(this.config[i].name));
                             return [2 /*return*/];
                         }
-                        else if (window.location.pathname === this.config[i].url) {
+                        else if (vn3page && vn3page === this.config[i].url && (os === null || os === void 0 ? void 0 : os.getAttribute("content")) === "iOS") {
                             scriptPage = document.createElement("script");
-                            scriptPage.setAttribute('src', "/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
+                            scriptPage.setAttribute('src', "".concat(this.config[i].name, ".bundle.js"));
                             document.body.appendChild(scriptPage);
                             stylePage = document.createElement("link");
                             stylePage.setAttribute('rel', 'stylesheet');
-                            stylePage.setAttribute('href', "/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
+                            stylePage.setAttribute('href', "".concat(this.config[i].name, ".bundle.css"));
+                            document.head.appendChild(stylePage);
+                            (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
+                            (new console_1.default).log("Starting  ".concat(this.config[i].name));
+                            return [2 /*return*/];
+                        }
+                        else if (window.location.pathname === this.config[i].url) {
+                            scriptPage = document.createElement("script");
+                            scriptPage.setAttribute('src', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
+                            document.body.appendChild(scriptPage);
+                            stylePage = document.createElement("link");
+                            stylePage.setAttribute('rel', 'stylesheet');
+                            stylePage.setAttribute('href', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
                             document.head.appendChild(stylePage);
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
                             (new console_1.default).log("Starting  ".concat(this.config[i].name));
