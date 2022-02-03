@@ -2,8 +2,14 @@ import VnNative3Console from "vnnative3-console/dist/console";
 import VnNative3HTML404 from "vnnative3-webview/dist/HTML404";
 import VnNative3RouterInterFace from "./interface";
 export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
-    config: any;
-    set(data: Array<any>) {
+    config: Array<{
+        url: string;
+        name: string;
+    }> | undefined
+    set(data: Array<{
+        url : string,
+        name : string 
+    }>) {
         try {
             this.config = data;
         } catch (e: any) {
@@ -14,13 +20,16 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
         let root: HTMLElement | null;
         root = document.getElementById("root");
         const urlParams = new URLSearchParams(window.location.search);
-        const vn3page = urlParams.get('vn3page');
+        let vn3page = urlParams.get('vn3page') ? urlParams.get('vn3page') : "/";
         try {
-            let os : HTMLElement | null;
-            os = document.getElementById("os");
-            const assets = os?.getAttribute("content") === "iOS" ? "" : "/assets";
+            let platform : any;
+            platform = window;
+            let os : string;
+            os = platform.vnnativeos && platform.vnnativeos.getOsName() ? platform.vnnativeos.getOsName() : "web";
+            const assets = os === "iOS" ? "" : "/assets";
+            this.config = this.config ? this.config : [];
             for (let i = 0; i < this.config.length; i++) {
-                if (vn3page && vn3page === this.config[i].url && os?.getAttribute("content") === "android") {
+                if (vn3page && vn3page === this.config[i].url && os === "android") {
                     let scriptPage = document.createElement("script");
                     scriptPage.setAttribute('src',`/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.js`);
                     document.body.appendChild(scriptPage);
@@ -31,7 +40,18 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
                     return;
-                } else if (vn3page && vn3page === this.config[i].url && os?.getAttribute("content") === "iOS") {
+                } else if (window.location.pathname === ('/android_asset' + this.config[i].url) && os === "android" ) {
+                    let scriptPage = document.createElement("script");
+                    scriptPage.setAttribute('src',`/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.js`);
+                    document.body.appendChild(scriptPage);
+                    let stylePage = document.createElement("link");
+                    stylePage.setAttribute('rel','stylesheet');
+                    stylePage.setAttribute('href',`/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.css`);
+                    document.head.appendChild(stylePage);
+                    (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
+                    (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
+                    return;
+                } else if (vn3page && vn3page === this.config[i].url && os === "iOS") {
                     let scriptPage = document.createElement("script");
                     scriptPage.setAttribute('src',`${this.config[i].name}.bundle.js`);
                     document.body.appendChild(scriptPage);
@@ -42,7 +62,7 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
                     return;
-                } else if (window.location.pathname === this.config[i].url) {
+                } else if (window.location.pathname === this.config[i].url && os === "software") {
                     let scriptPage = document.createElement("script");
                     scriptPage.setAttribute('src',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`);
                     document.body.appendChild(scriptPage);
@@ -53,13 +73,13 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
                     return;
-                } else if (window.location.pathname === ('/android_asset' + this.config[i].url) ) {
+                } else if (window.location.pathname === this.config[i].url && os === "web") {
                     let scriptPage = document.createElement("script");
-                    scriptPage.setAttribute('src',`/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.js`);
+                    scriptPage.setAttribute('src',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`);
                     document.body.appendChild(scriptPage);
                     let stylePage = document.createElement("link");
                     stylePage.setAttribute('rel','stylesheet');
-                    stylePage.setAttribute('href',`/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.css`);
+                    stylePage.setAttribute('href',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`);
                     document.head.appendChild(stylePage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
