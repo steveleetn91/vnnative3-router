@@ -50,9 +50,10 @@ var VnNative3RouterStruct = /** @class */ (function () {
         }
     };
     VnNative3RouterStruct.prototype.init = function () {
+        var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var root, urlParams, vn3page, platform, os, assets, i, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage;
-            return __generator(this, function (_a) {
+            var root, urlParams, vn3page, platform, os, assets, baseUrl, i, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage;
+            return __generator(this, function (_b) {
                 root = document.getElementById("root");
                 urlParams = new URLSearchParams(window.location.search);
                 vn3page = urlParams.get('vn3page') ? urlParams.get('vn3page') : "/";
@@ -63,7 +64,16 @@ var VnNative3RouterStruct = /** @class */ (function () {
                     os = platform.vnnativeos && platform.vnnativeos.getOsName() ? platform.vnnativeos.getOsName() : "web";
                     assets = os === "iOS" ? "" : "/assets";
                     this.config = this.config ? this.config : [];
+                    baseUrl = "";
+                    baseUrl = document.getElementById("base") ? (_a = document.getElementById("base")) === null || _a === void 0 ? void 0 : _a.getAttribute("href") : "";
+                    if (typeof baseUrl == "string") {
+                        assets += baseUrl + assets;
+                    }
                     for (i = 0; i < this.config.length; i++) {
+                        if (typeof baseUrl == "string") {
+                            this.config[i].url = baseUrl + this.config[i].url;
+                            vn3page = baseUrl + vn3page;
+                        }
                         if (vn3page && vn3page === this.config[i].url && os === "android") {
                             scriptPage = document.createElement("script");
                             scriptPage.setAttribute('src', "/android_asset/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
