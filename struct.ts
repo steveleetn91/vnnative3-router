@@ -32,7 +32,7 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
             let baseUrl: string | null | undefined = "";
             baseUrl = document.getElementById("base") ? document.getElementById("base")?.getAttribute("href") : "";
             if (typeof baseUrl == "string") {
-                assets += baseUrl + assets;
+                assets = baseUrl + assets;
             }
 
             for (let i = 0; i < this.config.length; i++) {

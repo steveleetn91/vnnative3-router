@@ -67,7 +67,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
                     baseUrl = "";
                     baseUrl = document.getElementById("base") ? (_a = document.getElementById("base")) === null || _a === void 0 ? void 0 : _a.getAttribute("href") : "";
                     if (typeof baseUrl == "string") {
-                        assets += baseUrl + assets;
+                        assets = baseUrl + assets;
                     }
                     for (i = 0; i < this.config.length; i++) {
                         if (typeof baseUrl == "string") {
