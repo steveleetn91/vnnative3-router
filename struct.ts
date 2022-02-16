@@ -29,10 +29,12 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
             let assets = os === "iOS" ? "" : "/assets";
             this.config = this.config ? this.config : [];
 
+            let packageName: string = "";
             let baseUrl: string | null | undefined = "";
             baseUrl = document.getElementById("base") ? document.getElementById("base")?.getAttribute("href") : "";
             if (typeof baseUrl == "string") {
                 assets = baseUrl + assets;
+                packageName = baseUrl;
             }
 
             for (let i = 0; i < this.config.length; i++) {
@@ -44,22 +46,22 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
 
                 if (vn3page && vn3page === this.config[i].url && os === "android") {
                     let scriptPage = document.createElement("script");
-                    scriptPage.setAttribute('src', `/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.js`);
+                    scriptPage.setAttribute('src', `/android_asset${packageName}/assets/${this.config[i].name}/${this.config[i].name}.bundle.js`);
                     document.body.appendChild(scriptPage);
                     let stylePage = document.createElement("link");
                     stylePage.setAttribute('rel', 'stylesheet');
-                    stylePage.setAttribute('href', `/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.css`);
+                    stylePage.setAttribute('href', `/android_asset${packageName}/assets/${this.config[i].name}/${this.config[i].name}.bundle.css`);
                     document.head.appendChild(stylePage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
                     return;
                 } else if (window.location.pathname === ('/android_asset' + this.config[i].url) && os === "android") {
                     let scriptPage = document.createElement("script");
-                    scriptPage.setAttribute('src', `/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.js`);
+                    scriptPage.setAttribute('src', `/android_asset${packageName}/assets/${this.config[i].name}/${this.config[i].name}.bundle.js`);
                     document.body.appendChild(scriptPage);
                     let stylePage = document.createElement("link");
                     stylePage.setAttribute('rel', 'stylesheet');
-                    stylePage.setAttribute('href', `/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.css`);
+                    stylePage.setAttribute('href', `/android_asset${packageName}/assets/${this.config[i].name}/${this.config[i].name}.bundle.css`);
                     document.head.appendChild(stylePage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);

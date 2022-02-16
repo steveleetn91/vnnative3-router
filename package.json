@@ -1,6 +1,6 @@
 {
   "name": "vnnative3-router",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "description": "Vn Native Framework package",
   "main": "index.js",
   "types": "dist/index.d.ts",
