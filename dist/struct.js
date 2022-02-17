@@ -51,7 +51,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
     };
     VnNative3RouterStruct.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var root, urlParams, vn3page, platform, os, assets, i, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage;
+            var root, urlParams, vn3page, platform, os_1, assets_1, data_1, loop_1;
             return __generator(this, function (_a) {
                 root = document.getElementById("root");
                 urlParams = new URLSearchParams(window.location.search);
@@ -59,79 +59,84 @@ var VnNative3RouterStruct = /** @class */ (function () {
                 try {
                     platform = void 0;
                     platform = window;
-                    os = void 0;
-                    os = platform.vnnativeos && platform.vnnativeos.getOsName() ? platform.vnnativeos.getOsName() : "web";
-                    assets = os === "iOS" ? "" : "/assets";
+                    os_1 = platform.vnnativeos && platform.vnnativeos.getOsName() ? platform.vnnativeos.getOsName() : "web";
+                    assets_1 = os_1 === "iOS" ? "" : "/assets";
                     this.config = this.config ? this.config : [];
-                    for (i = 0; i < this.config.length; i++) {
-                        if (vn3page && vn3page === this.config[i].url && os === "android") {
-                            scriptPage = document.createElement("script");
-                            scriptPage.setAttribute('src', "/android_asset/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
+                    data_1 = this.config;
+                    loop_1 = function (i) {
+                        if (i === void 0) { i = 0; }
+                        if (vn3page && vn3page === data_1[i].url && os_1 === "android") {
+                            alert("android + " + "/android_asset/assets/".concat(data_1[i].name, "/").concat(data_1[i].name, ".bundle.js"));
+                            var scriptPage = document.createElement("script");
+                            scriptPage.setAttribute('src', "/android_asset/assets/".concat(data_1[i].name, "/").concat(data_1[i].name, ".bundle.js"));
                             document.body.appendChild(scriptPage);
-                            stylePage = document.createElement("link");
+                            var stylePage = document.createElement("link");
                             stylePage.setAttribute('rel', 'stylesheet');
-                            stylePage.setAttribute('href', "/android_asset/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
+                            stylePage.setAttribute('href', "/android_asset/assets/".concat(data_1[i].name, "/").concat(data_1[i].name, ".bundle.css"));
                             document.head.appendChild(stylePage);
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
-                            (new console_1.default).log("Starting  ".concat(this.config[i].name));
-                            return [2 /*return*/];
+                            (new console_1.default).log("Starting  ".concat(data_1[i].name));
+                            return;
                         }
-                        else if (window.location.pathname === ('/android_asset' + this.config[i].url) && os === "android") {
-                            scriptPage = document.createElement("script");
-                            scriptPage.setAttribute('src', "/android_asset/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
+                        else if (window.location.pathname === ('/android_asset' + data_1[i].url) && os_1 === "android") {
+                            var scriptPage = document.createElement("script");
+                            scriptPage.setAttribute('src', "/android_asset/assets/".concat(data_1[i].name, "/").concat(data_1[i].name, ".bundle.js"));
                             document.body.appendChild(scriptPage);
-                            stylePage = document.createElement("link");
+                            var stylePage = document.createElement("link");
                             stylePage.setAttribute('rel', 'stylesheet');
-                            stylePage.setAttribute('href', "/android_asset/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
+                            stylePage.setAttribute('href', "/android_asset/assets/".concat(data_1[i].name, "/").concat(data_1[i].name, ".bundle.css"));
                             document.head.appendChild(stylePage);
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
-                            (new console_1.default).log("Starting  ".concat(this.config[i].name));
-                            return [2 /*return*/];
+                            (new console_1.default).log("Starting  ".concat(data_1[i].name));
+                            return;
                         }
-                        else if (vn3page && vn3page === this.config[i].url && os === "iOS") {
-                            scriptPage = document.createElement("script");
-                            scriptPage.setAttribute('src', "".concat(this.config[i].name, ".bundle.js"));
+                        else if (vn3page && vn3page === data_1[i].url && os_1 === "iOS") {
+                            var scriptPage = document.createElement("script");
+                            scriptPage.setAttribute('src', "".concat(data_1[i].name, ".bundle.js"));
                             document.body.appendChild(scriptPage);
-                            stylePage = document.createElement("link");
+                            var stylePage = document.createElement("link");
                             stylePage.setAttribute('rel', 'stylesheet');
-                            stylePage.setAttribute('href', "".concat(this.config[i].name, ".bundle.css"));
+                            stylePage.setAttribute('href', "".concat(data_1[i].name, ".bundle.css"));
                             document.head.appendChild(stylePage);
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
-                            (new console_1.default).log("Starting  ".concat(this.config[i].name));
-                            return [2 /*return*/];
+                            (new console_1.default).log("Starting  ".concat(data_1[i].name));
+                            return;
                         }
-                        else if (window.location.pathname === this.config[i].url && os === "software") {
-                            scriptPage = document.createElement("script");
-                            scriptPage.setAttribute('src', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
+                        else if (window.location.pathname === data_1[i].url && os_1 === "software") {
+                            var scriptPage = document.createElement("script");
+                            scriptPage.setAttribute('src', "".concat(assets_1, "/").concat(data_1[i].name, "/").concat(data_1[i].name, ".bundle.js"));
                             document.body.appendChild(scriptPage);
-                            stylePage = document.createElement("link");
+                            var stylePage = document.createElement("link");
                             stylePage.setAttribute('rel', 'stylesheet');
-                            stylePage.setAttribute('href', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
+                            stylePage.setAttribute('href', "".concat(assets_1, "/").concat(data_1[i].name, "/").concat(data_1[i].name, ".bundle.css"));
                             document.head.appendChild(stylePage);
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
-                            (new console_1.default).log("Starting  ".concat(this.config[i].name));
-                            return [2 /*return*/];
+                            (new console_1.default).log("Starting  ".concat(data_1[i].name));
+                            return;
                         }
-                        else if (window.location.pathname === this.config[i].url && os === "web") {
-                            scriptPage = document.createElement("script");
-                            scriptPage.setAttribute('src', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
+                        else if (window.location.pathname === data_1[i].url && os_1 === "web") {
+                            var scriptPage = document.createElement("script");
+                            scriptPage.setAttribute('src', "".concat(assets_1, "/").concat(data_1[i].name, "/").concat(data_1[i].name, ".bundle.js"));
                             document.body.appendChild(scriptPage);
-                            stylePage = document.createElement("link");
+                            var stylePage = document.createElement("link");
                             stylePage.setAttribute('rel', 'stylesheet');
-                            stylePage.setAttribute('href', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
+                            stylePage.setAttribute('href', "".concat(assets_1, "/").concat(data_1[i].name, "/").concat(data_1[i].name, ".bundle.css"));
                             document.head.appendChild(stylePage);
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
-                            (new console_1.default).log("Starting  ".concat(this.config[i].name));
-                            return [2 /*return*/];
+                            (new console_1.default).log("Starting  ".concat(data_1[i].name));
+                            return;
                         }
-                        if ((i + 1) === this.config.length) {
+                        if ((i + 1) === data_1.length) {
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
                             if (root) {
                                 root.innerHTML = (new HTML404_1.default).render();
                             }
-                            return [2 /*return*/];
                         }
-                    }
+                        else {
+                            loop_1(i + 1);
+                        }
+                    };
+                    loop_1();
                 }
                 catch (e) {
                     return [2 /*return*/, (new console_1.default).error(e.toString())];
