@@ -72,9 +72,8 @@ var VnNative3RouterStruct = /** @class */ (function () {
                         packageName = baseUrl;
                     }
                     for (i = 0; i < this.config.length; i++) {
-                        if (typeof baseUrl == "string") {
-                            this.config[i].url = baseUrl + this.config[i].url;
-                            vn3page = baseUrl + vn3page;
+                        if (typeof vn3page == null) {
+                            this.config[i].url = packageName + this.config[i].url;
                         }
                         if (vn3page && vn3page === this.config[i].url && os === "android") {
                             scriptPage = document.createElement("script");
@@ -88,7 +87,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
                             (new console_1.default).log("Starting  ".concat(this.config[i].name));
                             return [2 /*return*/];
                         }
-                        else if (window.location.pathname === ('/android_asset' + this.config[i].url) && os === "android") {
+                        else if (window.location.pathname === this.config[i].url && os === "android") {
                             scriptPage = document.createElement("script");
                             scriptPage.setAttribute('src', "/android_asset".concat(packageName, "/assets/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
                             document.body.appendChild(scriptPage);

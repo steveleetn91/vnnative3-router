@@ -17,10 +17,9 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
         }
     }
     async init() {
-        let root: HTMLElement | null;
-        root = document.getElementById("root");
-        const urlParams = new URLSearchParams(window.location.search);
-        let vn3page = urlParams.get('vn3page') ? urlParams.get('vn3page') : "/";
+        let root: HTMLElement | null = document.getElementById("root");
+        let urlParams : URLSearchParams = new URLSearchParams(window.location.search);
+        let vn3page : string | null = urlParams.get('vn3page') ? urlParams.get('vn3page') : "/";
         try {
             let platform: any;
             platform = window;
@@ -38,10 +37,8 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
             }
 
             for (let i = 0; i < this.config.length; i++) {
-
-                if (typeof baseUrl == "string") {
-                    this.config[i].url = baseUrl + this.config[i].url;
-                    vn3page = baseUrl + vn3page;
+                if(typeof vn3page == null){
+                    this.config[i].url = packageName + this.config[i].url;
                 }
 
                 if (vn3page && vn3page === this.config[i].url && os === "android") {
@@ -55,7 +52,7 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
                     return;
-                } else if (window.location.pathname === ('/android_asset' + this.config[i].url) && os === "android") {
+                } else if (window.location.pathname === this.config[i].url && os === "android") {
                     let scriptPage = document.createElement("script");
                     scriptPage.setAttribute('src', `/android_asset${packageName}/assets/${this.config[i].name}/${this.config[i].name}.bundle.js`);
                     document.body.appendChild(scriptPage);
