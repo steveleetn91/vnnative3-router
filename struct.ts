@@ -28,67 +28,61 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
             os = platform.vnnativeos && platform.vnnativeos.getOsName() ? platform.vnnativeos.getOsName() : "web";
             const assets = os === "iOS" ? "" : "/assets";
             this.config = this.config ? this.config : [];
-            let data : Array<{
-                url: string;
-                name: string;
-            }> = this.config
-            const loop = (i:number = 0) : void | Function => {
-                if (vn3page && vn3page === data[i].url && os === "android") {
+            for (let i = 0; i < this.config.length; i++) {
+                if (vn3page && vn3page === this.config[i].url && os === "android") {
                     let scriptPage : HTMLElement = document.createElement("script");
-                    scriptPage.setAttribute('src',`/android_asset/assets/${data[i].name}/${data[i].name}.bundle.js`);
+                    scriptPage.setAttribute('src',`/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.js`);
                     document.body.appendChild(scriptPage);
                     let stylePage : HTMLElement = document.createElement("link");
                     stylePage.setAttribute('rel','stylesheet');
-                    stylePage.setAttribute('href',`/android_asset/assets/${data[i].name}/${data[i].name}.bundle.css`);
+                    stylePage.setAttribute('href',`/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.css`);
                     document.head.appendChild(stylePage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
-                    (new VnNative3Console).log(`Starting  ${data[i].name}`);
+                    (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
                     return;
-                } else if (vn3page && vn3page === data[i].url && os === "iOS") {
+                } else if (vn3page && vn3page === this.config[i].url && os === "iOS") {
                     let scriptPage : HTMLElement = document.createElement("script");
-                    scriptPage.setAttribute('src',`${data[i].name}.bundle.js`);
+                    scriptPage.setAttribute('src',`${this.config[i].name}.bundle.js`);
                     document.body.appendChild(scriptPage);
                     let stylePage : HTMLElement = document.createElement("link");
                     stylePage.setAttribute('rel','stylesheet');
-                    stylePage.setAttribute('href',`${data[i].name}.bundle.css`);
+                    stylePage.setAttribute('href',`${this.config[i].name}.bundle.css`);
                     document.head.appendChild(stylePage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
-                    (new VnNative3Console).log(`Starting  ${data[i].name}`);
+                    (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
                     return;
-                } else if (window.location.pathname === data[i].url && os === "software") {
+                } else if (window.location.pathname === this.config[i].url && os === "software") {
                     let scriptPage : HTMLElement = document.createElement("script");
-                    scriptPage.setAttribute('src',`${assets}/${data[i].name}/${data[i].name}.bundle.js`);
+                    scriptPage.setAttribute('src',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`);
                     document.body.appendChild(scriptPage);
                     let stylePage : HTMLElement = document.createElement("link");
                     stylePage.setAttribute('rel','stylesheet');
-                    stylePage.setAttribute('href',`${assets}/${data[i].name}/${data[i].name}.bundle.css`);
+                    stylePage.setAttribute('href',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`);
                     document.head.appendChild(stylePage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
-                    (new VnNative3Console).log(`Starting  ${data[i].name}`);
+                    (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
                     return;
-                } else if (window.location.pathname === data[i].url && os === "web") {
+                } else if (window.location.pathname === this.config[i].url && os === "web") {
                     let scriptPage : HTMLElement = document.createElement("script");
-                    scriptPage.setAttribute('src',`${assets}/${data[i].name}/${data[i].name}.bundle.js`);
+                    scriptPage.setAttribute('src',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`);
                     document.body.appendChild(scriptPage);
                     let stylePage : HTMLElement = document.createElement("link");
                     stylePage.setAttribute('rel','stylesheet');
-                    stylePage.setAttribute('href',`${assets}/${data[i].name}/${data[i].name}.bundle.css`);
+                    stylePage.setAttribute('href',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`);
                     document.head.appendChild(stylePage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
-                    (new VnNative3Console).log(`Starting  ${data[i].name}`);
+                    (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
                     return;
-                } 
-
-                if ((i + 1) === data.length) {
+                    
+                }
+                if ((i + 1) === this.config.length) {
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     if(root) {
                         root.innerHTML = (new VnNative3HTML404).render();
                     }
-                } else {
-                    loop(i+1);
+                    return;
                 }
             }
-            loop();
         } catch (e: any) {
             return (new VnNative3Console).error(e.toString());
         }
