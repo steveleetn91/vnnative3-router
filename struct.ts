@@ -28,8 +28,13 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
             os = platform.vnnativeos && platform.vnnativeos.getOsName() ? platform.vnnativeos.getOsName() : "web";
             const assets = os === "iOS" ? "" : "/assets";
             this.config = this.config ? this.config : [];
+            let isDevelopment = false;
+            if(platform.location.href.includes("http://") == true) {
+                isDevelopment = true;
+            }
+
             for (let i = 0; i < this.config.length; i++) {
-                if (vn3page && vn3page === this.config[i].url && os === "android") {
+                if (vn3page && vn3page === this.config[i].url && os === "android" && isDevelopment === false) {
                     let stylePage : HTMLElement = document.createElement("link");
                     stylePage.setAttribute('rel','stylesheet');
                     stylePage.setAttribute('href',`/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.css`);
@@ -39,8 +44,8 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                     document.body.appendChild(scriptPage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
-                    return;
-                } else if (vn3page && vn3page === this.config[i].url && os === "iOS") {
+                    break;
+                } else if (vn3page && vn3page === this.config[i].url && os === "iOS" && isDevelopment === false) {
                     let stylePage : HTMLElement = document.createElement("link");
                     stylePage.setAttribute('rel','stylesheet');
                     stylePage.setAttribute('href',`${this.config[i].name}.bundle.css`);
@@ -50,7 +55,7 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                     document.body.appendChild(scriptPage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
-                    return;
+                    break;
                 } else if (window.location.pathname === this.config[i].url && os === "software") {
                     let stylePage : HTMLElement = document.createElement("link");
                     stylePage.setAttribute('rel','stylesheet');
@@ -61,7 +66,7 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                     document.body.appendChild(scriptPage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
-                    return;
+                    break;
                 } else if (window.location.pathname === this.config[i].url && os === "web") {
                     let stylePage : HTMLElement = document.createElement("link");
                     stylePage.setAttribute('rel','stylesheet');
@@ -72,7 +77,7 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                     document.body.appendChild(scriptPage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
-                    return;
+                    break;
                     
                 }
                 if ((i + 1) === this.config.length) {
