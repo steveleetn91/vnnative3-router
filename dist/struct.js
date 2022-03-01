@@ -51,7 +51,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
     };
     VnNative3RouterStruct.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var root, urlParams, vn3page, platform, os, assets, i, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage;
+            var root, urlParams, vn3page, platform, os, assets, i, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage;
             return __generator(this, function (_a) {
                 root = document.getElementById("root");
                 urlParams = new URLSearchParams(window.location.search);
@@ -65,49 +65,49 @@ var VnNative3RouterStruct = /** @class */ (function () {
                     this.config = this.config ? this.config : [];
                     for (i = 0; i < this.config.length; i++) {
                         if (vn3page && vn3page === this.config[i].url && os === "android") {
-                            scriptPage = document.createElement("script");
-                            scriptPage.setAttribute('src', "/android_asset/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
-                            document.body.appendChild(scriptPage);
                             stylePage = document.createElement("link");
                             stylePage.setAttribute('rel', 'stylesheet');
                             stylePage.setAttribute('href', "/android_asset/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
                             document.head.appendChild(stylePage);
+                            scriptPage = document.createElement("script");
+                            scriptPage.setAttribute('src', "/android_asset/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
+                            document.body.appendChild(scriptPage);
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
                             (new console_1.default).log("Starting  ".concat(this.config[i].name));
                             return [2 /*return*/];
                         }
                         else if (vn3page && vn3page === this.config[i].url && os === "iOS") {
-                            scriptPage = document.createElement("script");
-                            scriptPage.setAttribute('src', "".concat(this.config[i].name, ".bundle.js"));
-                            document.body.appendChild(scriptPage);
                             stylePage = document.createElement("link");
                             stylePage.setAttribute('rel', 'stylesheet');
                             stylePage.setAttribute('href', "".concat(this.config[i].name, ".bundle.css"));
                             document.head.appendChild(stylePage);
+                            scriptPage = document.createElement("script");
+                            scriptPage.setAttribute('src', "".concat(this.config[i].name, ".bundle.js"));
+                            document.body.appendChild(scriptPage);
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
                             (new console_1.default).log("Starting  ".concat(this.config[i].name));
                             return [2 /*return*/];
                         }
                         else if (window.location.pathname === this.config[i].url && os === "software") {
-                            scriptPage = document.createElement("script");
-                            scriptPage.setAttribute('src', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
-                            document.body.appendChild(scriptPage);
                             stylePage = document.createElement("link");
                             stylePage.setAttribute('rel', 'stylesheet');
                             stylePage.setAttribute('href', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
                             document.head.appendChild(stylePage);
+                            scriptPage = document.createElement("script");
+                            scriptPage.setAttribute('src', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
+                            document.body.appendChild(scriptPage);
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
                             (new console_1.default).log("Starting  ".concat(this.config[i].name));
                             return [2 /*return*/];
                         }
                         else if (window.location.pathname === this.config[i].url && os === "web") {
-                            scriptPage = document.createElement("script");
-                            scriptPage.setAttribute('src', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
-                            document.body.appendChild(scriptPage);
                             stylePage = document.createElement("link");
                             stylePage.setAttribute('rel', 'stylesheet');
                             stylePage.setAttribute('href', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
                             document.head.appendChild(stylePage);
+                            scriptPage = document.createElement("script");
+                            scriptPage.setAttribute('src', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
+                            document.body.appendChild(scriptPage);
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
                             (new console_1.default).log("Starting  ".concat(this.config[i].name));
                             return [2 /*return*/];

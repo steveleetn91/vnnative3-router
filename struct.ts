@@ -30,46 +30,46 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
             this.config = this.config ? this.config : [];
             for (let i = 0; i < this.config.length; i++) {
                 if (vn3page && vn3page === this.config[i].url && os === "android") {
-                    let scriptPage : HTMLElement = document.createElement("script");
-                    scriptPage.setAttribute('src',`/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.js`);
-                    document.body.appendChild(scriptPage);
                     let stylePage : HTMLElement = document.createElement("link");
                     stylePage.setAttribute('rel','stylesheet');
                     stylePage.setAttribute('href',`/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.css`);
                     document.head.appendChild(stylePage);
+                    let scriptPage : HTMLElement = document.createElement("script");
+                    scriptPage.setAttribute('src',`/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.js`);
+                    document.body.appendChild(scriptPage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
                     return;
                 } else if (vn3page && vn3page === this.config[i].url && os === "iOS") {
-                    let scriptPage : HTMLElement = document.createElement("script");
-                    scriptPage.setAttribute('src',`${this.config[i].name}.bundle.js`);
-                    document.body.appendChild(scriptPage);
                     let stylePage : HTMLElement = document.createElement("link");
                     stylePage.setAttribute('rel','stylesheet');
                     stylePage.setAttribute('href',`${this.config[i].name}.bundle.css`);
                     document.head.appendChild(stylePage);
+                    let scriptPage : HTMLElement = document.createElement("script");
+                    scriptPage.setAttribute('src',`${this.config[i].name}.bundle.js`);
+                    document.body.appendChild(scriptPage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
                     return;
                 } else if (window.location.pathname === this.config[i].url && os === "software") {
-                    let scriptPage : HTMLElement = document.createElement("script");
-                    scriptPage.setAttribute('src',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`);
-                    document.body.appendChild(scriptPage);
                     let stylePage : HTMLElement = document.createElement("link");
                     stylePage.setAttribute('rel','stylesheet');
                     stylePage.setAttribute('href',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`);
                     document.head.appendChild(stylePage);
+                    let scriptPage : HTMLElement = document.createElement("script");
+                    scriptPage.setAttribute('src',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`);
+                    document.body.appendChild(scriptPage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
                     return;
                 } else if (window.location.pathname === this.config[i].url && os === "web") {
-                    let scriptPage : HTMLElement = document.createElement("script");
-                    scriptPage.setAttribute('src',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`);
-                    document.body.appendChild(scriptPage);
                     let stylePage : HTMLElement = document.createElement("link");
                     stylePage.setAttribute('rel','stylesheet');
                     stylePage.setAttribute('href',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`);
                     document.head.appendChild(stylePage);
+                    let scriptPage : HTMLElement = document.createElement("script");
+                    scriptPage.setAttribute('src',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`);
+                    document.body.appendChild(scriptPage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
                     return;
