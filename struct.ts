@@ -79,6 +79,18 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
                     break;
                     
+                } else if (window.location.pathname === this.config[i].url && isDevelopment === true) {
+                    let stylePage : HTMLElement = document.createElement("link");
+                    stylePage.setAttribute('rel','stylesheet');
+                    stylePage.setAttribute('href',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`);
+                    document.head.appendChild(stylePage);
+                    let scriptPage : HTMLElement = document.createElement("script");
+                    scriptPage.setAttribute('src',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`);
+                    document.body.appendChild(scriptPage);
+                    (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
+                    (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
+                    break;
+                    
                 }
                 if ((i + 1) === this.config.length) {
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');

@@ -51,7 +51,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
     };
     VnNative3RouterStruct.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var root, urlParams, vn3page, platform, os, assets, isDevelopment, i, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage;
+            var root, urlParams, vn3page, platform, os, assets, isDevelopment, i, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage;
             return __generator(this, function (_a) {
                 root = document.getElementById("root");
                 urlParams = new URLSearchParams(window.location.search);
@@ -105,6 +105,18 @@ var VnNative3RouterStruct = /** @class */ (function () {
                             break;
                         }
                         else if (window.location.pathname === this.config[i].url && os === "web") {
+                            stylePage = document.createElement("link");
+                            stylePage.setAttribute('rel', 'stylesheet');
+                            stylePage.setAttribute('href', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
+                            document.head.appendChild(stylePage);
+                            scriptPage = document.createElement("script");
+                            scriptPage.setAttribute('src', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
+                            document.body.appendChild(scriptPage);
+                            (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
+                            (new console_1.default).log("Starting  ".concat(this.config[i].name));
+                            break;
+                        }
+                        else if (window.location.pathname === this.config[i].url && isDevelopment === true) {
                             stylePage = document.createElement("link");
                             stylePage.setAttribute('rel', 'stylesheet');
                             stylePage.setAttribute('href', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
