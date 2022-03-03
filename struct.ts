@@ -5,13 +5,15 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
     config: Array<{
         url: string;
         name: string;
-    }> | undefined
+    }> | undefined;
+    notFound: string = "";
     set(data: Array<{
         url : string,
         name : string 
-    }>) {
+    }>,notFound : string = "NotFoundPage") {
         try {
             this.config = data;
+            this.notFound = notFound;
         } catch (e: any) {
             return (new VnNative3Console).error(e.toString());
         }
@@ -93,10 +95,15 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                     
                 }
                 if ((i + 1) === this.config.length) {
+                    let stylePage : HTMLElement = document.createElement("link");
+                    stylePage.setAttribute('rel','stylesheet');
+                    stylePage.setAttribute('href',`${assets}/${this.notFound}/${this.notFound}.bundle.css`);
+                    document.head.appendChild(stylePage);
+                    let scriptPage : HTMLElement = document.createElement("script");
+                    scriptPage.setAttribute('src',`${assets}/${this.notFound}/${this.notFound}.bundle.js`);
+                    document.body.appendChild(scriptPage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
-                    if(root) {
-                        root.innerHTML = (new VnNative3HTML404).render();
-                    }
+                    (new VnNative3Console).log(`Starting  ${this.notFound}`);
                     return;
                 }
             }

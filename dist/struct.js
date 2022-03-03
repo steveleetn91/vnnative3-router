@@ -37,13 +37,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var console_1 = require("vnnative3-console/dist/console");
-var HTML404_1 = require("vnnative3-webview/dist/HTML404");
 var VnNative3RouterStruct = /** @class */ (function () {
     function VnNative3RouterStruct() {
+        this.notFound = "";
     }
-    VnNative3RouterStruct.prototype.set = function (data) {
+    VnNative3RouterStruct.prototype.set = function (data, notFound) {
+        if (notFound === void 0) { notFound = "NotFoundPage"; }
         try {
             this.config = data;
+            this.notFound = notFound;
         }
         catch (e) {
             return (new console_1.default).error(e.toString());
@@ -51,7 +53,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
     };
     VnNative3RouterStruct.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var root, urlParams, vn3page, platform, os, assets, isDevelopment, i, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage;
+            var root, urlParams, vn3page, platform, os, assets, isDevelopment, i, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage;
             return __generator(this, function (_a) {
                 root = document.getElementById("root");
                 urlParams = new URLSearchParams(window.location.search);
@@ -129,10 +131,15 @@ var VnNative3RouterStruct = /** @class */ (function () {
                             break;
                         }
                         if ((i + 1) === this.config.length) {
+                            stylePage = document.createElement("link");
+                            stylePage.setAttribute('rel', 'stylesheet');
+                            stylePage.setAttribute('href', "".concat(assets, "/").concat(this.notFound, "/").concat(this.notFound, ".bundle.css"));
+                            document.head.appendChild(stylePage);
+                            scriptPage = document.createElement("script");
+                            scriptPage.setAttribute('src', "".concat(assets, "/").concat(this.notFound, "/").concat(this.notFound, ".bundle.js"));
+                            document.body.appendChild(scriptPage);
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
-                            if (root) {
-                                root.innerHTML = (new HTML404_1.default).render();
-                            }
+                            (new console_1.default).log("Starting  ".concat(this.notFound));
                             return [2 /*return*/];
                         }
                     }

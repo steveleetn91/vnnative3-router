@@ -4,10 +4,11 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
         url: string;
         name: string;
     }> | undefined;
+    notFound: string;
     set(data: Array<{
         url: string;
         name: string;
-    }>): void;
+    }>, notFound?: string): void;
     init(): Promise<void>;
     renderCurrentPage(name: any, page: any): Promise<void>;
 }
