@@ -19,12 +19,19 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
         }
     }
     async init() {
+        let href : string = window.location.href;
+        let checkHref : string = "";
         let root: HTMLElement | null;
         root = document.getElementById("root");
         const urlParams = new URLSearchParams(window.location.search);
         let vn3page = urlParams.get('vn3page') ? urlParams.get('vn3page') : "/";
         try {
             const startLoad = () => {
+                if(checkHref === "") {
+                    checkHref = window.location.href;
+                } else if(checkHref === href){
+                    return false;
+                }
                 let platform: any;
                 platform = window;
                 let os: string;
@@ -120,7 +127,11 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                     }
                 }
             }
-            document.addEventListener("deviceready", startLoad, false);
+            document.addEventListener("deviceready", () => {
+                setInterval(() => {
+                    startLoad();
+                },5000);
+            }, false);
         } catch (e: any) {
             return (new VnNative3Console).error(e.toString());
         }

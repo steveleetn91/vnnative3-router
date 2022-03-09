@@ -53,14 +53,22 @@ var VnNative3RouterStruct = /** @class */ (function () {
     };
     VnNative3RouterStruct.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var root, urlParams, vn3page, startLoad;
+            var href, checkHref, root, urlParams, vn3page, startLoad_1;
             var _this = this;
             return __generator(this, function (_a) {
+                href = window.location.href;
+                checkHref = "";
                 root = document.getElementById("root");
                 urlParams = new URLSearchParams(window.location.search);
                 vn3page = urlParams.get('vn3page') ? urlParams.get('vn3page') : "/";
                 try {
-                    startLoad = function () {
+                    startLoad_1 = function () {
+                        if (checkHref === "") {
+                            checkHref = window.location.href;
+                        }
+                        else if (checkHref === href) {
+                            return false;
+                        }
                         var platform;
                         platform = window;
                         var os;
@@ -158,7 +166,11 @@ var VnNative3RouterStruct = /** @class */ (function () {
                             }
                         }
                     };
-                    document.addEventListener("deviceready", startLoad, false);
+                    document.addEventListener("deviceready", function () {
+                        setInterval(function () {
+                            startLoad_1();
+                        }, 5000);
+                    }, false);
                 }
                 catch (e) {
                     return [2 /*return*/, (new console_1.default).error(e.toString())];
