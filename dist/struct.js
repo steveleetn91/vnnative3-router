@@ -73,10 +73,10 @@ var VnNative3RouterStruct = /** @class */ (function () {
                         if (vn3page && vn3page === this.config[i].url && os === "Android" && isDevelopment === false) {
                             stylePage = document.createElement("link");
                             stylePage.setAttribute('rel', 'stylesheet');
-                            stylePage.setAttribute('href', "/android_asset/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
+                            stylePage.setAttribute('href', "/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
                             document.head.appendChild(stylePage);
                             scriptPage = document.createElement("script");
-                            scriptPage.setAttribute('src', "/android_asset/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
+                            scriptPage.setAttribute('src', "/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
                             document.body.appendChild(scriptPage);
                             (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
                             (new console_1.default).log("Starting  ".concat(this.config[i].name));

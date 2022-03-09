@@ -39,10 +39,10 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                 if (vn3page && vn3page === this.config[i].url && os === "Android" && isDevelopment === false) {
                     let stylePage : HTMLElement = document.createElement("link");
                     stylePage.setAttribute('rel','stylesheet');
-                    stylePage.setAttribute('href',`/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.css`);
+                    stylePage.setAttribute('href',`/assets/${this.config[i].name}/${this.config[i].name}.bundle.css`);
                     document.head.appendChild(stylePage);
                     let scriptPage : HTMLElement = document.createElement("script");
-                    scriptPage.setAttribute('src',`/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.js`);
+                    scriptPage.setAttribute('src',`/assets/${this.config[i].name}/${this.config[i].name}.bundle.js`);
                     document.body.appendChild(scriptPage);
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
