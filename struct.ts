@@ -133,6 +133,9 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
             }
             if(os === "browser") {
                 startLoad();
+                    setInterval(() => {
+                        startLoad();
+                    },5000);
             } else {
                 document.addEventListener("deviceready", () => {
                     startLoad();

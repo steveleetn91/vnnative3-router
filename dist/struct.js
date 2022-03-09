@@ -166,6 +166,9 @@ var VnNative3RouterStruct = /** @class */ (function () {
                     };
                     if (os_1 === "browser") {
                         startLoad_1();
+                        setInterval(function () {
+                            startLoad_1();
+                        }, 5000);
                     }
                     else {
                         document.addEventListener("deviceready", function () {
