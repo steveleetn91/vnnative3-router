@@ -53,7 +53,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
     };
     VnNative3RouterStruct.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var root, urlParams, vn3page, platform, os, assets, isDevelopment, i, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage;
+            var root, urlParams, vn3page, platform, os, assets, isDevelopment, i, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage, stylePage, scriptPage;
             return __generator(this, function (_a) {
                 root = document.getElementById("root");
                 urlParams = new URLSearchParams(window.location.search);
@@ -62,7 +62,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
                     platform = void 0;
                     platform = window;
                     os = void 0;
-                    os = platform.vnnativeos && platform.vnnativeos.getOsName() ? platform.vnnativeos.getOsName() : "web";
+                    os = platform.device && platform.device.platform ? platform.device.platform : "browser";
                     assets = os === "iOS" ? "" : "/assets";
                     this.config = this.config ? this.config : [];
                     isDevelopment = false;
@@ -70,7 +70,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
                         isDevelopment = true;
                     }
                     for (i = 0; i < this.config.length; i++) {
-                        if (vn3page && vn3page === this.config[i].url && os === "android" && isDevelopment === false) {
+                        if (vn3page && vn3page === this.config[i].url && os === "Android" && isDevelopment === false) {
                             stylePage = document.createElement("link");
                             stylePage.setAttribute('rel', 'stylesheet');
                             stylePage.setAttribute('href', "/android_asset/assets/".concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
@@ -94,7 +94,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
                             (new console_1.default).log("Starting  ".concat(this.config[i].name));
                             break;
                         }
-                        else if (window.location.pathname === this.config[i].url && os === "software") {
+                        else if (window.location.pathname === this.config[i].url && os === "Mac OS X") {
                             stylePage = document.createElement("link");
                             stylePage.setAttribute('rel', 'stylesheet');
                             stylePage.setAttribute('href', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
@@ -106,7 +106,19 @@ var VnNative3RouterStruct = /** @class */ (function () {
                             (new console_1.default).log("Starting  ".concat(this.config[i].name));
                             break;
                         }
-                        else if (window.location.pathname === this.config[i].url && os === "web") {
+                        else if (window.location.pathname === this.config[i].url && os === "WinCE") {
+                            stylePage = document.createElement("link");
+                            stylePage.setAttribute('rel', 'stylesheet');
+                            stylePage.setAttribute('href', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));
+                            document.head.appendChild(stylePage);
+                            scriptPage = document.createElement("script");
+                            scriptPage.setAttribute('src', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.js"));
+                            document.body.appendChild(scriptPage);
+                            (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
+                            (new console_1.default).log("Starting  ".concat(this.config[i].name));
+                            break;
+                        }
+                        else if (window.location.pathname === this.config[i].url && os === "browser") {
                             stylePage = document.createElement("link");
                             stylePage.setAttribute('rel', 'stylesheet');
                             stylePage.setAttribute('href', "".concat(assets, "/").concat(this.config[i].name, "/").concat(this.config[i].name, ".bundle.css"));

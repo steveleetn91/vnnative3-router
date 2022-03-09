@@ -27,7 +27,7 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
             let platform : any;
             platform = window;
             let os : string;
-            os = platform.vnnativeos && platform.vnnativeos.getOsName() ? platform.vnnativeos.getOsName() : "web";
+            os = platform.device && platform.device.platform ? platform.device.platform : "browser";
             const assets = os === "iOS" ? "" : "/assets";
             this.config = this.config ? this.config : [];
             let isDevelopment = false;
@@ -36,7 +36,7 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
             }
 
             for (let i = 0; i < this.config.length; i++) {
-                if (vn3page && vn3page === this.config[i].url && os === "android" && isDevelopment === false) {
+                if (vn3page && vn3page === this.config[i].url && os === "Android" && isDevelopment === false) {
                     let stylePage : HTMLElement = document.createElement("link");
                     stylePage.setAttribute('rel','stylesheet');
                     stylePage.setAttribute('href',`/android_asset/assets/${this.config[i].name}/${this.config[i].name}.bundle.css`);
@@ -58,7 +58,7 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
                     break;
-                } else if (window.location.pathname === this.config[i].url && os === "software") {
+                } else if (window.location.pathname === this.config[i].url && os === "Mac OS X") {
                     let stylePage : HTMLElement = document.createElement("link");
                     stylePage.setAttribute('rel','stylesheet');
                     stylePage.setAttribute('href',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`);
@@ -69,7 +69,18 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                     (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
                     (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
                     break;
-                } else if (window.location.pathname === this.config[i].url && os === "web") {
+                } else if (window.location.pathname === this.config[i].url && os === "WinCE") {
+                    let stylePage : HTMLElement = document.createElement("link");
+                    stylePage.setAttribute('rel','stylesheet');
+                    stylePage.setAttribute('href',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`);
+                    document.head.appendChild(stylePage);
+                    let scriptPage : HTMLElement = document.createElement("script");
+                    scriptPage.setAttribute('src',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`);
+                    document.body.appendChild(scriptPage);
+                    (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
+                    (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
+                    break;
+                } else if (window.location.pathname === this.config[i].url && os === "browser") {
                     let stylePage : HTMLElement = document.createElement("link");
                     stylePage.setAttribute('rel','stylesheet');
                     stylePage.setAttribute('href',`${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`);
