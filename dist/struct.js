@@ -71,7 +71,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
                             isDevelopment = true;
                         }
                         for (var i = 0; i < _this.config.length; i++) {
-                            if (vn3page && vn3page === _this.config[i].url && os_1 === "Android" && isDevelopment === false) {
+                            if (vn3page && vn3page === _this.config[i].url && os_1 === "Android") {
                                 var stylePage = document.createElement("link");
                                 stylePage.setAttribute('rel', 'stylesheet');
                                 stylePage.setAttribute('href', "/assets/".concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.css"));
@@ -83,7 +83,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
                                 (new console_1.default).log("Starting  ".concat(_this.config[i].name));
                                 break;
                             }
-                            else if (vn3page && vn3page === _this.config[i].url && os_1 === "iOS" && isDevelopment === false) {
+                            else if (vn3page && vn3page === _this.config[i].url && os_1 === "iOS") {
                                 var stylePage = document.createElement("link");
                                 stylePage.setAttribute('rel', 'stylesheet');
                                 stylePage.setAttribute('href', "".concat(_this.config[i].name, ".bundle.css"));
@@ -131,18 +131,6 @@ var VnNative3RouterStruct = /** @class */ (function () {
                                 (new console_1.default).log("Starting  ".concat(_this.config[i].name));
                                 break;
                             }
-                            else if (window.location.pathname === _this.config[i].url && isDevelopment === true) {
-                                var stylePage = document.createElement("link");
-                                stylePage.setAttribute('rel', 'stylesheet');
-                                stylePage.setAttribute('href', "".concat(assets, "/").concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.css"));
-                                document.head.appendChild(stylePage);
-                                var scriptPage = document.createElement("script");
-                                scriptPage.setAttribute('src', "".concat(assets, "/").concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.js"));
-                                document.body.appendChild(scriptPage);
-                                (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
-                                (new console_1.default).log("Starting  ".concat(_this.config[i].name));
-                                break;
-                            }
                             if ((i + 1) === _this.config.length) {
                                 var stylePage = document.createElement("link");
                                 stylePage.setAttribute('rel', 'stylesheet');
@@ -170,7 +158,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
                             startHref_1 = checkHref;
                             startLoad_1();
                         }
-                    }, 5000);
+                    }, 2000);
                 }
                 catch (e) {
                     return [2 /*return*/, (new console_1.default).error(e.toString())];
