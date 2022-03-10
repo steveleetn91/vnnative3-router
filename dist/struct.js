@@ -54,24 +54,27 @@ var VnNative3RouterStruct = /** @class */ (function () {
     };
     VnNative3RouterStruct.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var root, urlParams, vn3page, platform_1, os_1, startLoad_1;
+            var startLoad_1;
             var _this = this;
             return __generator(this, function (_a) {
-                root = document.getElementById("root");
-                urlParams = new URLSearchParams(window.location.search);
-                vn3page = urlParams.get('vn3page') ? urlParams.get('vn3page') : "/";
                 try {
-                    platform_1 = window;
-                    os_1 = platform_1.device && platform_1.device.platform ? platform_1.device.platform : "browser";
                     startLoad_1 = function () {
-                        var assets = os_1 === "iOS" ? "" : "/assets";
+                        var root;
+                        root = document.getElementById("root");
+                        var urlParams = new URLSearchParams(window.location.search);
+                        var vn3page = urlParams.get('vn3page') ? urlParams.get('vn3page') : "/";
+                        var platform;
+                        platform = window;
+                        var os;
+                        os = platform.device && platform.device.platform ? platform.device.platform : "browser";
+                        var assets = os === "iOS" ? "" : "/assets";
                         _this.config = _this.config ? _this.config : [];
                         var isDevelopment = false;
-                        if (platform_1.location.href.includes("http://") == true) {
+                        if (platform.location.href.includes("http://") == true) {
                             isDevelopment = true;
                         }
                         for (var i = 0; i < _this.config.length; i++) {
-                            if (vn3page && vn3page === _this.config[i].url && os_1 === "Android" && isDevelopment === false) {
+                            if (vn3page && vn3page === _this.config[i].url && os === "Android" && isDevelopment === false) {
                                 var stylePage = document.createElement("link");
                                 stylePage.setAttribute('rel', 'stylesheet');
                                 stylePage.setAttribute('href', "/assets/".concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.css"));
@@ -83,7 +86,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
                                 (new console_1.default).log("Starting  ".concat(_this.config[i].name));
                                 break;
                             }
-                            else if (vn3page && vn3page === _this.config[i].url && os_1 === "iOS" && isDevelopment === false) {
+                            else if (vn3page && vn3page === _this.config[i].url && os === "iOS" && isDevelopment === false) {
                                 var stylePage = document.createElement("link");
                                 stylePage.setAttribute('rel', 'stylesheet');
                                 stylePage.setAttribute('href', "".concat(_this.config[i].name, ".bundle.css"));
@@ -95,7 +98,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
                                 (new console_1.default).log("Starting  ".concat(_this.config[i].name));
                                 break;
                             }
-                            else if (window.location.pathname === _this.config[i].url && os_1 === "Mac OS X") {
+                            else if (window.location.pathname === _this.config[i].url && os === "Mac OS X") {
                                 var stylePage = document.createElement("link");
                                 stylePage.setAttribute('rel', 'stylesheet');
                                 stylePage.setAttribute('href', "".concat(assets, "/").concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.css"));
@@ -107,7 +110,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
                                 (new console_1.default).log("Starting  ".concat(_this.config[i].name));
                                 break;
                             }
-                            else if (window.location.pathname === _this.config[i].url && os_1 === "WinCE") {
+                            else if (window.location.pathname === _this.config[i].url && os === "WinCE") {
                                 var stylePage = document.createElement("link");
                                 stylePage.setAttribute('rel', 'stylesheet');
                                 stylePage.setAttribute('href', "".concat(assets, "/").concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.css"));
@@ -119,7 +122,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
                                 (new console_1.default).log("Starting  ".concat(_this.config[i].name));
                                 break;
                             }
-                            else if (window.location.pathname === _this.config[i].url && os_1 === "browser") {
+                            else if (window.location.pathname === _this.config[i].url && os === "browser") {
                                 var stylePage = document.createElement("link");
                                 stylePage.setAttribute('rel', 'stylesheet');
                                 stylePage.setAttribute('href', "".concat(assets, "/").concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.css"));
