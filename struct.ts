@@ -1,6 +1,5 @@
 import VnNative3Console from "vnnative3-console/dist/console";
 import VnNative3RouterInterFace from "./interface";
-var ee = require('event-emitter');
 export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
     config: Array<{
         url: string;
