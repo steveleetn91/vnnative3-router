@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var console_1 = require("vnnative3-console/dist/console");
+var EM = require('es-event-emitter');
 var VnNative3RouterStruct = /** @class */ (function () {
     function VnNative3RouterStruct() {
         this.notFound = "";
@@ -53,11 +54,9 @@ var VnNative3RouterStruct = /** @class */ (function () {
     };
     VnNative3RouterStruct.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var href, checkHref, root, urlParams, vn3page, platform_1, os_1, startLoad_1;
+            var root, urlParams, vn3page, platform_1, os_1, startLoad_1;
             var _this = this;
             return __generator(this, function (_a) {
-                href = window.location.href;
-                checkHref = "";
                 root = document.getElementById("root");
                 urlParams = new URLSearchParams(window.location.search);
                 vn3page = urlParams.get('vn3page') ? urlParams.get('vn3page') : "/";
@@ -65,12 +64,6 @@ var VnNative3RouterStruct = /** @class */ (function () {
                     platform_1 = window;
                     os_1 = platform_1.device && platform_1.device.platform ? platform_1.device.platform : "browser";
                     startLoad_1 = function () {
-                        if (checkHref === "") {
-                            checkHref = window.location.href;
-                        }
-                        else if (checkHref === href) {
-                            return false;
-                        }
                         var assets = os_1 === "iOS" ? "" : "/assets";
                         _this.config = _this.config ? _this.config : [];
                         var isDevelopment = false;
@@ -164,20 +157,12 @@ var VnNative3RouterStruct = /** @class */ (function () {
                             }
                         }
                     };
-                    if (os_1 === "browser") {
+                    document.addEventListener("deviceready", function () {
                         startLoad_1();
-                        setInterval(function () {
-                            startLoad_1();
-                        }, 5000);
-                    }
-                    else {
-                        document.addEventListener("deviceready", function () {
-                            startLoad_1();
-                            setInterval(function () {
-                                startLoad_1();
-                            }, 5000);
-                        }, false);
-                    }
+                    }, false);
+                    EM.on("vnf3pagechange", function () {
+                        startLoad_1();
+                    });
                 }
                 catch (e) {
                     return [2 /*return*/, (new console_1.default).error(e.toString())];

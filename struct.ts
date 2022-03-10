@@ -1,6 +1,6 @@
 import VnNative3Console from "vnnative3-console/dist/console";
-import VnNative3HTML404 from "vnnative3-webview/dist/HTML404";
 import VnNative3RouterInterFace from "./interface";
+var EM = require('es-event-emitter');
 export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
     config: Array<{
         url: string;
@@ -19,8 +19,6 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
         }
     }
     async init() {
-        let href : string = window.location.href;
-        let checkHref : string = "";
         let root: HTMLElement | null;
         root = document.getElementById("root");
         const urlParams = new URLSearchParams(window.location.search);
@@ -34,11 +32,6 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
             os = platform.device && platform.device.platform ? platform.device.platform : "browser";
 
             const startLoad = () => {
-                if(checkHref === "") {
-                    checkHref = window.location.href;
-                } else if(checkHref === href){
-                    return false;
-                }
 
                 const assets = os === "iOS" ? "" : "/assets";
                 this.config = this.config ? this.config : [];
@@ -131,20 +124,14 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                     }
                 }
             }
-            if(os === "browser") {
+            document.addEventListener("deviceready", () => {
                 startLoad();
-                    setInterval(() => {
-                        startLoad();
-                    },5000);
-            } else {
-                document.addEventListener("deviceready", () => {
-                    startLoad();
-                    setInterval(() => {
-                        startLoad();
-                    },5000);
-                }, false);    
-            }
+            }, false);    
             
+            EM.on("vnf3pagechange",() => {
+                startLoad();
+            })
+
         } catch (e: any) {
             return (new VnNative3Console).error(e.toString());
         }
