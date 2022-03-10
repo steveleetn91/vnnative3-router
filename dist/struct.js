@@ -53,25 +53,27 @@ var VnNative3RouterStruct = /** @class */ (function () {
     };
     VnNative3RouterStruct.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var platform_1, os_1, startLoad_1, startHref_1;
+            var startLoad_1;
             var _this = this;
             return __generator(this, function (_a) {
                 try {
-                    platform_1 = window;
-                    os_1 = platform_1.device && platform_1.device.platform ? platform_1.device.platform : "browser";
                     startLoad_1 = function () {
+                        var platform;
+                        platform = window;
+                        var os;
+                        os = platform.device && platform.device.platform ? platform.device.platform : "browser";
                         var root;
                         root = document.getElementById("root");
                         var urlParams = new URLSearchParams(window.location.search);
                         var vn3page = urlParams.get('vn3page') ? urlParams.get('vn3page') : "/";
-                        var assets = os_1 === "iOS" ? "" : "/assets";
+                        var assets = os === "iOS" ? "" : "/assets";
                         _this.config = _this.config ? _this.config : [];
                         var isDevelopment = false;
-                        if (platform_1.location.href.includes("http://") == true) {
+                        if (platform.location.href.includes("http://") == true) {
                             isDevelopment = true;
                         }
                         for (var i = 0; i < _this.config.length; i++) {
-                            if (vn3page && vn3page === _this.config[i].url && os_1 === "Android") {
+                            if (vn3page && vn3page === _this.config[i].url && os === "Android") {
                                 var stylePage = document.createElement("link");
                                 stylePage.setAttribute('rel', 'stylesheet');
                                 stylePage.setAttribute('href', "/assets/".concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.css"));
@@ -80,10 +82,10 @@ var VnNative3RouterStruct = /** @class */ (function () {
                                 scriptPage.setAttribute('src', "/assets/".concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.js"));
                                 document.body.appendChild(scriptPage);
                                 (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
-                                (new console_1.default).log("Starting  ".concat(_this.config[i].name));
+                                (new console_1.default).log("Starting Android : ".concat(_this.config[i].name));
                                 break;
                             }
-                            else if (vn3page && vn3page === _this.config[i].url && os_1 === "iOS") {
+                            else if (vn3page && vn3page === _this.config[i].url && os === "iOS") {
                                 var stylePage = document.createElement("link");
                                 stylePage.setAttribute('rel', 'stylesheet');
                                 stylePage.setAttribute('href', "".concat(_this.config[i].name, ".bundle.css"));
@@ -92,10 +94,10 @@ var VnNative3RouterStruct = /** @class */ (function () {
                                 scriptPage.setAttribute('src', "".concat(_this.config[i].name, ".bundle.js"));
                                 document.body.appendChild(scriptPage);
                                 (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
-                                (new console_1.default).log("Starting  ".concat(_this.config[i].name));
+                                (new console_1.default).log("Starting iOS : ".concat(_this.config[i].name));
                                 break;
                             }
-                            else if (window.location.pathname === _this.config[i].url && os_1 === "Mac OS X") {
+                            else if (window.location.pathname === _this.config[i].url && os === "Mac OS X") {
                                 var stylePage = document.createElement("link");
                                 stylePage.setAttribute('rel', 'stylesheet');
                                 stylePage.setAttribute('href', "".concat(assets, "/").concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.css"));
@@ -104,10 +106,10 @@ var VnNative3RouterStruct = /** @class */ (function () {
                                 scriptPage.setAttribute('src', "".concat(assets, "/").concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.js"));
                                 document.body.appendChild(scriptPage);
                                 (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
-                                (new console_1.default).log("Starting  ".concat(_this.config[i].name));
+                                (new console_1.default).log("Starting Mac OS X :  ".concat(_this.config[i].name));
                                 break;
                             }
-                            else if (window.location.pathname === _this.config[i].url && os_1 === "WinCE") {
+                            else if (window.location.pathname === _this.config[i].url && os === "WinCE") {
                                 var stylePage = document.createElement("link");
                                 stylePage.setAttribute('rel', 'stylesheet');
                                 stylePage.setAttribute('href', "".concat(assets, "/").concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.css"));
@@ -116,10 +118,10 @@ var VnNative3RouterStruct = /** @class */ (function () {
                                 scriptPage.setAttribute('src', "".concat(assets, "/").concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.js"));
                                 document.body.appendChild(scriptPage);
                                 (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
-                                (new console_1.default).log("Starting  ".concat(_this.config[i].name));
+                                (new console_1.default).log("Starting Windows :  ".concat(_this.config[i].name));
                                 break;
                             }
-                            else if (window.location.pathname === _this.config[i].url && os_1 === "browser") {
+                            else if (window.location.pathname === _this.config[i].url && os === "browser") {
                                 var stylePage = document.createElement("link");
                                 stylePage.setAttribute('rel', 'stylesheet');
                                 stylePage.setAttribute('href', "".concat(assets, "/").concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.css"));
@@ -147,18 +149,18 @@ var VnNative3RouterStruct = /** @class */ (function () {
                     };
                     document.addEventListener("deviceready", function () {
                         startLoad_1();
+                        var startHref = window.location.href;
+                        setInterval(function () {
+                            var checkHref = window.location.href;
+                            if (startHref === checkHref) {
+                                return false;
+                            }
+                            else {
+                                startHref = checkHref;
+                                startLoad_1();
+                            }
+                        }, 1500);
                     }, false);
-                    startHref_1 = window.location.href;
-                    setInterval(function () {
-                        var checkHref = window.location.href;
-                        if (startHref_1 === checkHref) {
-                            return false;
-                        }
-                        else {
-                            startHref_1 = checkHref;
-                            startLoad_1();
-                        }
-                    }, 2000);
                 }
                 catch (e) {
                     return [2 /*return*/, (new console_1.default).error(e.toString())];

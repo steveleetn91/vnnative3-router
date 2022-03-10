@@ -20,11 +20,12 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
     async init() {
 
         try {
-            let platform: any;
-            platform = window;
-            let os: string;
-            os = platform.device && platform.device.platform ? platform.device.platform : "browser";
+
             const startLoad = () => {
+                let platform: any;
+                platform = window;
+                let os: string;
+                os = platform.device && platform.device.platform ? platform.device.platform : "browser";
 
                 let root: HTMLElement | null;
                 root = document.getElementById("root");
@@ -48,7 +49,7 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                         scriptPage.setAttribute('src', `/assets/${this.config[i].name}/${this.config[i].name}.bundle.js`);
                         document.body.appendChild(scriptPage);
                         (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
-                        (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
+                        (new VnNative3Console).log(`Starting Android : ${this.config[i].name}`);
                         break;
                     } else if (vn3page && vn3page === this.config[i].url && os === "iOS") {
                         let stylePage: HTMLElement = document.createElement("link");
@@ -59,7 +60,7 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                         scriptPage.setAttribute('src', `${this.config[i].name}.bundle.js`);
                         document.body.appendChild(scriptPage);
                         (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
-                        (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
+                        (new VnNative3Console).log(`Starting iOS : ${this.config[i].name}`);
                         break;
                     } else if (window.location.pathname === this.config[i].url && os === "Mac OS X") {
                         let stylePage: HTMLElement = document.createElement("link");
@@ -70,7 +71,7 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                         scriptPage.setAttribute('src', `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`);
                         document.body.appendChild(scriptPage);
                         (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
-                        (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
+                        (new VnNative3Console).log(`Starting Mac OS X :  ${this.config[i].name}`);
                         break;
                     } else if (window.location.pathname === this.config[i].url && os === "WinCE") {
                         let stylePage: HTMLElement = document.createElement("link");
@@ -81,7 +82,7 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                         scriptPage.setAttribute('src', `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`);
                         document.body.appendChild(scriptPage);
                         (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
-                        (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
+                        (new VnNative3Console).log(`Starting Windows :  ${this.config[i].name}`);
                         break;
                     } else if (window.location.pathname === this.config[i].url && os === "browser") {
                         let stylePage: HTMLElement = document.createElement("link");
@@ -113,18 +114,19 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
 
             document.addEventListener("deviceready", () => {
                 startLoad();
+                let startHref = window.location.href;
+                setInterval(() => {
+                    let checkHref = window.location.href;
+                    if (startHref === checkHref) {
+                        return false;
+                    } else {
+                        startHref = checkHref;
+                        startLoad();
+                    }
+                }, 1500);
             }, false);
 
-            let startHref = window.location.href;
-            setInterval(() => {
-                let checkHref = window.location.href;
-                if (startHref === checkHref) {
-                    return false;
-                } else {
-                    startHref = checkHref;
-                    startLoad();
-                }
-            }, 2000);
+            
 
         } catch (e: any) {
             return (new VnNative3Console).error(e.toString());
