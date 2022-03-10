@@ -1,6 +1,6 @@
 import VnNative3Console from "vnnative3-console/dist/console";
 import VnNative3RouterInterFace from "./interface";
-var EM = require('es-event-emitter');
+var ee = require('event-emitter');
 export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
     config: Array<{
         url: string;
@@ -19,20 +19,18 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
         }
     }
     async init() {
-        
+
         try {
-            
+            let platform: any;
+            platform = window;
+            let os: string;
+            os = platform.device && platform.device.platform ? platform.device.platform : "browser";
             const startLoad = () => {
 
                 let root: HTMLElement | null;
                 root = document.getElementById("root");
                 const urlParams = new URLSearchParams(window.location.search);
                 let vn3page = urlParams.get('vn3page') ? urlParams.get('vn3page') : "/";
-
-                let platform: any;
-                platform = window;
-                let os: string;
-                os = platform.device && platform.device.platform ? platform.device.platform : "browser";
 
                 const assets = os === "iOS" ? "" : "/assets";
                 this.config = this.config ? this.config : [];
@@ -125,13 +123,21 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                     }
                 }
             }
+
             document.addEventListener("deviceready", () => {
                 startLoad();
-            }, false);    
-            
-            EM.on("vnf3pagechange",() => {
-                startLoad();
-            })
+            }, false);
+
+            let startHref = window.location.href;
+            setInterval(() => {
+                let checkHref = window.location.href;
+                if (startHref === checkHref) {
+                    return false;
+                } else {
+                    startHref = checkHref;
+                    startLoad();
+                }
+            }, 5000);
 
         } catch (e: any) {
             return (new VnNative3Console).error(e.toString());
