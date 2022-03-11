@@ -66,7 +66,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
                         root = document.getElementById("root");
                         var urlParams = new URLSearchParams(window.location.search);
                         var vn3page = urlParams.get('vn3page') ? urlParams.get('vn3page') : "/";
-                        var assets = os === "iOS" ? "" : "/assets";
+                        var assets = os === "iOS" ? "assets" : "/assets";
                         _this.config = _this.config ? _this.config : [];
                         var isDevelopment = false;
                         if (platform.location.href.includes("http://") == true) {
@@ -76,10 +76,10 @@ var VnNative3RouterStruct = /** @class */ (function () {
                             if (vn3page && vn3page === _this.config[i].url && os === "Android") {
                                 var stylePage = document.createElement("link");
                                 stylePage.setAttribute('rel', 'stylesheet');
-                                stylePage.setAttribute('href', "/assets/".concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.css"));
+                                stylePage.setAttribute('href', "".concat(assets, "/").concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.css"));
                                 document.head.appendChild(stylePage);
                                 var scriptPage = document.createElement("script");
-                                scriptPage.setAttribute('src', "/assets/".concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.js"));
+                                scriptPage.setAttribute('src', "".concat(assets, "/").concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.js"));
                                 document.body.appendChild(scriptPage);
                                 (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
                                 (new console_1.default).log("Starting Android : ".concat(_this.config[i].name));
@@ -88,10 +88,10 @@ var VnNative3RouterStruct = /** @class */ (function () {
                             else if (vn3page && vn3page === _this.config[i].url && os === "iOS") {
                                 var stylePage = document.createElement("link");
                                 stylePage.setAttribute('rel', 'stylesheet');
-                                stylePage.setAttribute('href', "".concat(_this.config[i].name, ".bundle.css"));
+                                stylePage.setAttribute('href', "".concat(assets, "/").concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.css"));
                                 document.head.appendChild(stylePage);
                                 var scriptPage = document.createElement("script");
-                                scriptPage.setAttribute('src', "".concat(_this.config[i].name, ".bundle.js"));
+                                scriptPage.setAttribute('src', "".concat(assets, "/").concat(_this.config[i].name, "/").concat(_this.config[i].name, ".bundle.js"));
                                 document.body.appendChild(scriptPage);
                                 (new console_1.default).log('Welcome to Vn Native 3 Frame Work');
                                 (new console_1.default).log("Starting iOS : ".concat(_this.config[i].name));
