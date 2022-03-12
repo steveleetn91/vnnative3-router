@@ -10,5 +10,6 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
         name: string;
     }>, notFound?: string): void;
     init(): Promise<void>;
+    supportMoveScreen(): void;
     renderCurrentPage(name: any, page: any): Promise<void>;
 }

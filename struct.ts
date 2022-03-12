@@ -132,6 +132,18 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
             return (new VnNative3Console).error(e.toString());
         }
     }
+    supportMoveScreen(): void {
+        let links : NodeListOf<Element> = document.querySelectorAll("#root a");
+        links.forEach((link : Element) => {
+            link.addEventListener("click",(ev : Event) => {
+                let routerLink : string | null = link.getAttribute("link");
+                let go : string = routerLink != null ? routerLink : "";
+                if(go !== "" ) {
+                    history.pushState({}, '', go)
+                }
+            })
+        })
+    }
     async renderCurrentPage(name: any, page: any) {
         let root: HTMLElement | null;
         root = document.getElementById("root");
@@ -140,6 +152,6 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
             root.innerHTML = await page.render();
         }
         await page.afterRender();
-        window[name] = page;
+        this.supportMoveScreen();
     }
 }

@@ -10,4 +10,5 @@ export default interface VnNative3RouterInterFaceConfig {
     }>, notFoundName: string): any;
     init(): any;
     renderCurrentPage(name: any, page: any): void;
+    supportMoveScreen(): void;
 }

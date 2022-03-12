@@ -169,6 +169,18 @@ var VnNative3RouterStruct = /** @class */ (function () {
             });
         });
     };
+    VnNative3RouterStruct.prototype.supportMoveScreen = function () {
+        var links = document.querySelectorAll("#root a");
+        links.forEach(function (link) {
+            link.addEventListener("click", function (ev) {
+                var routerLink = link.getAttribute("link");
+                var go = routerLink != null ? routerLink : "";
+                if (go !== "") {
+                    history.pushState({}, '', go);
+                }
+            });
+        });
+    };
     VnNative3RouterStruct.prototype.renderCurrentPage = function (name, page) {
         return __awaiter(this, void 0, void 0, function () {
             var root, _a;
@@ -188,7 +200,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
                     case 3: return [4 /*yield*/, page.afterRender()];
                     case 4:
                         _b.sent();
-                        window[name] = page;
+                        this.supportMoveScreen();
                         return [2 /*return*/];
                 }
             });
