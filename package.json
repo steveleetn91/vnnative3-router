@@ -1,11 +1,11 @@
 {
   "name": "vnnative3-router",
-  "version": "1.0.92",
+  "version": "1.0.96",
   "description": "Vn Native Framework package",
   "main": "index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "prepublish": "npm run build",
+    "prepublish": "tsc",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
