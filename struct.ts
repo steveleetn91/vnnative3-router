@@ -1,5 +1,6 @@
 import VnNative3Console from "vnnative3-console/dist/console";
 import VnNative3RouterInterFace from "./interface";
+import Vnnative3Location from 'vnnative3-location/dist/index';
 export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
     config: Array<{
         url: string;
@@ -139,7 +140,7 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                 let routerLink : string | null = link.getAttribute("link");
                 let go : string = routerLink != null ? routerLink : "";
                 if(go !== "" ) {
-                    history.pushState({}, '', go)
+                    (new Vnnative3Location).redirect.go(go,[]);
                 }
             })
         })
