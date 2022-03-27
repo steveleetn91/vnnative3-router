@@ -45,11 +45,10 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                     if (vn3page && vn3page === this.config[i].url && os === "Android") {
                         stylePageHerf = `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`;
                         scriptPageSrc = `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`;
-                        break;
                     } else if (vn3page && vn3page === this.config[i].url && os === "iOS") {
                         stylePageHerf = `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`;
                         scriptPageSrc = `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`;
-                        break;
+                        
                     } else if (window.location.pathname === this.config[i].url && os === "browser") {
                         stylePageHerf = `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`;
                         scriptPageSrc = `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`;
@@ -57,17 +56,18 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                         stylePageHerf = `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`;
                         scriptPageSrc = `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`;
                     }
-
-                    let stylePage: HTMLElement = document.createElement("link");
-                    stylePage.setAttribute('rel', 'stylesheet');
-                    stylePage.setAttribute('href', stylePageHerf);
-                    document.head.appendChild(stylePage);
-                    let scriptPage: HTMLElement = document.createElement("script");
-                    scriptPage.setAttribute('src', scriptPageSrc);
-                    document.body.appendChild(scriptPage);
-                    (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
-                    (new VnNative3Console).log(`Starting Android : ${this.config[i].name}`);
-
+                    if(stylePageHerf !== "" && scriptPageSrc !== "") {
+                        let stylePage: HTMLElement = document.createElement("link");
+                        stylePage.setAttribute('rel', 'stylesheet');
+                        stylePage.setAttribute('href', stylePageHerf);
+                        document.head.appendChild(stylePage);
+                        let scriptPage: HTMLElement = document.createElement("script");
+                        scriptPage.setAttribute('src', scriptPageSrc);
+                        document.body.appendChild(scriptPage);
+                        (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
+                        (new VnNative3Console).log(`Starting ${os} : ${this.config[i].name}`); 
+                        break;   
+                    }
                     if ((i + 1) === this.config.length) {
                         let stylePage: HTMLElement = document.createElement("link");
                         stylePage.setAttribute('rel', 'stylesheet');
