@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var console_1 = require("vnnative3-console/dist/console");
 var index_1 = require("vnnative3-location/dist/index");
+var index_2 = require("vnnative-3-os/dist/index");
 var VnNative3RouterStruct = /** @class */ (function () {
     function VnNative3RouterStruct() {
         this.notFound = "";
@@ -62,7 +63,7 @@ var VnNative3RouterStruct = /** @class */ (function () {
                         var platform;
                         platform = window;
                         var os;
-                        os = platform.device && platform.device.platform ? platform.device.platform : "browser";
+                        os = (new index_2.default).isOs();
                         var root;
                         root = document.getElementById("root");
                         var urlParams = new URLSearchParams(window.location.search);
