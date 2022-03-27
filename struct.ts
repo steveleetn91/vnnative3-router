@@ -28,76 +28,52 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                 let os: string;
                 os = platform.device && platform.device.platform ? platform.device.platform : "browser";
 
+                if (platform.vnnativeos) {
+                    if (platform.vnnativeos.getOsName()) {
+                        os = platform.vnnativeos.getOsName();
+                    }
+                }
+
                 let root: HTMLElement | null;
                 root = document.getElementById("root");
                 const urlParams = new URLSearchParams(window.location.search);
                 let vn3page = urlParams.get('vn3page') ? urlParams.get('vn3page') : "/";
 
-                const assets = os === "iOS" ? "assets" : "/assets";
+                const assets = os === "iOS" || os === "software" ? "assets" : "/assets";
                 this.config = this.config ? this.config : [];
                 let isDevelopment = false;
                 if (platform.location.href.includes("http://") == true) {
                     isDevelopment = true;
                 }
-
+                let stylePageHerf: string = "";
+                let scriptPageSrc: string = "";
                 for (let i = 0; i < this.config.length; i++) {
                     if (vn3page && vn3page === this.config[i].url && os === "Android") {
-                        let stylePage: HTMLElement = document.createElement("link");
-                        stylePage.setAttribute('rel', 'stylesheet');
-                        stylePage.setAttribute('href', `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`);
-                        document.head.appendChild(stylePage);
-                        let scriptPage: HTMLElement = document.createElement("script");
-                        scriptPage.setAttribute('src', `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`);
-                        document.body.appendChild(scriptPage);
-                        (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
-                        (new VnNative3Console).log(`Starting Android : ${this.config[i].name}`);
+                        stylePageHerf = `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`;
+                        scriptPageSrc = `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`;
                         break;
                     } else if (vn3page && vn3page === this.config[i].url && os === "iOS") {
-                        let stylePage: HTMLElement = document.createElement("link");
-                        stylePage.setAttribute('rel', 'stylesheet');
-                        stylePage.setAttribute('href', `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`);
-                        document.head.appendChild(stylePage);
-                        let scriptPage: HTMLElement = document.createElement("script");
-                        scriptPage.setAttribute('src', `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`);
-                        document.body.appendChild(scriptPage);
-                        (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
-                        (new VnNative3Console).log(`Starting iOS : ${this.config[i].name}`);
-                        break;
-                    } else if (window.location.pathname === this.config[i].url && os === "Mac OS X") {
-                        let stylePage: HTMLElement = document.createElement("link");
-                        stylePage.setAttribute('rel', 'stylesheet');
-                        stylePage.setAttribute('href', `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`);
-                        document.head.appendChild(stylePage);
-                        let scriptPage: HTMLElement = document.createElement("script");
-                        scriptPage.setAttribute('src', `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`);
-                        document.body.appendChild(scriptPage);
-                        (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
-                        (new VnNative3Console).log(`Starting Mac OS X :  ${this.config[i].name}`);
-                        break;
-                    } else if (window.location.pathname === this.config[i].url && os === "WinCE") {
-                        let stylePage: HTMLElement = document.createElement("link");
-                        stylePage.setAttribute('rel', 'stylesheet');
-                        stylePage.setAttribute('href', `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`);
-                        document.head.appendChild(stylePage);
-                        let scriptPage: HTMLElement = document.createElement("script");
-                        scriptPage.setAttribute('src', `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`);
-                        document.body.appendChild(scriptPage);
-                        (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
-                        (new VnNative3Console).log(`Starting Windows :  ${this.config[i].name}`);
+                        stylePageHerf = `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`;
+                        scriptPageSrc = `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`;
                         break;
                     } else if (window.location.pathname === this.config[i].url && os === "browser") {
-                        let stylePage: HTMLElement = document.createElement("link");
-                        stylePage.setAttribute('rel', 'stylesheet');
-                        stylePage.setAttribute('href', `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`);
-                        document.head.appendChild(stylePage);
-                        let scriptPage: HTMLElement = document.createElement("script");
-                        scriptPage.setAttribute('src', `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`);
-                        document.body.appendChild(scriptPage);
-                        (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
-                        (new VnNative3Console).log(`Starting  ${this.config[i].name}`);
-                        break;
-
+                        stylePageHerf = `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`;
+                        scriptPageSrc = `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`;
+                    } else if (vn3page && vn3page === this.config[i].url && os === "software") {
+                        stylePageHerf = `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.css`;
+                        scriptPageSrc = `${assets}/${this.config[i].name}/${this.config[i].name}.bundle.js`;
                     }
+
+                    let stylePage: HTMLElement = document.createElement("link");
+                    stylePage.setAttribute('rel', 'stylesheet');
+                    stylePage.setAttribute('href', stylePageHerf);
+                    document.head.appendChild(stylePage);
+                    let scriptPage: HTMLElement = document.createElement("script");
+                    scriptPage.setAttribute('src', scriptPageSrc);
+                    document.body.appendChild(scriptPage);
+                    (new VnNative3Console).log('Welcome to Vn Native 3 Frame Work');
+                    (new VnNative3Console).log(`Starting Android : ${this.config[i].name}`);
+
                     if ((i + 1) === this.config.length) {
                         let stylePage: HTMLElement = document.createElement("link");
                         stylePage.setAttribute('rel', 'stylesheet');
@@ -127,20 +103,20 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                 }, 1500);
             }, false);
 
-            
+
 
         } catch (e: any) {
             return (new VnNative3Console).error(e.toString());
         }
     }
     supportMoveScreen(): void {
-        let links : NodeListOf<Element> = document.querySelectorAll("#root a");
-        links.forEach((link : Element) => {
-            link.addEventListener("click",(ev : Event) => {
-                let routerLink : string | null = link.getAttribute("link");
-                let go : string = routerLink != null ? routerLink : "";
-                if(go !== "" ) {
-                    (new Vnnative3Location).redirect.go(go,[]);
+        let links: NodeListOf<Element> = document.querySelectorAll("#root a");
+        links.forEach((link: Element) => {
+            link.addEventListener("click", (ev: Event) => {
+                let routerLink: string | null = link.getAttribute("link");
+                let go: string = routerLink != null ? routerLink : "";
+                if (go !== "") {
+                    (new Vnnative3Location).redirect.go(go, []);
                 }
             })
         })
