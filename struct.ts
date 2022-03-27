@@ -1,6 +1,7 @@
 import VnNative3Console from "vnnative3-console/dist/console";
 import VnNative3RouterInterFace from "./interface";
 import Vnnative3Location from 'vnnative3-location/dist/index';
+import VnnativeOsIndex from "vnnative-3-os/dist/index"
 export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
     config: Array<{
         url: string;
@@ -26,7 +27,7 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                 let platform: any;
                 platform = window;
                 let os: string;
-                os = platform.device && platform.device.platform ? platform.device.platform : "browser";
+                os = (new VnnativeOsIndex).isOs();
 
                 let root: HTMLElement | null;
                 root = document.getElementById("root");
