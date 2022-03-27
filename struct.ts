@@ -28,12 +28,6 @@ export default class VnNative3RouterStruct implements VnNative3RouterInterFace {
                 let os: string;
                 os = platform.device && platform.device.platform ? platform.device.platform : "browser";
 
-                if (platform.vnnativeos) {
-                    if (platform.vnnativeos.getOsName()) {
-                        os = platform.vnnativeos.getOsName();
-                    }
-                }
-
                 let root: HTMLElement | null;
                 root = document.getElementById("root");
                 const urlParams = new URLSearchParams(window.location.search);

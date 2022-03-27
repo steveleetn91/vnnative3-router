@@ -63,11 +63,6 @@ var VnNative3RouterStruct = /** @class */ (function () {
                         platform = window;
                         var os;
                         os = platform.device && platform.device.platform ? platform.device.platform : "browser";
-                        if (platform.vnnativeos) {
-                            if (platform.vnnativeos.getOsName()) {
-                                os = platform.vnnativeos.getOsName();
-                            }
-                        }
                         var root;
                         root = document.getElementById("root");
                         var urlParams = new URLSearchParams(window.location.search);
