@@ -1,4 +1,4 @@
-export default interface VnNative3RouterInterFaceConfig {
+export default interface Vnnative3RouterBaseInterface {
     config : Array<{
         url : string,
         name: string
